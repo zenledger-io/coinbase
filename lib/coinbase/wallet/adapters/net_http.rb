@@ -7,6 +7,7 @@ module Coinbase
         @conn.use_ssl = true if base_uri.scheme == 'https'
         @conn.cert_store = self.class.whitelisted_certificates
         @conn.ssl_version = :TLSv1_2
+        @conn.verify_mode = OpenSSL::SSL::VERIFY_NONE
       end
 
       private
