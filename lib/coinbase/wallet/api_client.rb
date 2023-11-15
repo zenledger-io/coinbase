@@ -651,7 +651,7 @@ module Coinbase
         http_verb('GET', uri, nil, headers) do |resp|
           if params[:fetch_all] == true &&
             resp.body.has_key?('pagination') &&
-            resp.body['pagination']['next_uri'] != nil
+            !resp.body['pagination']['next_uri'].to_s.empty?
               params[:starting_after] = resp.body['data'].last['id']
               get(path, params) do |page|
                 body = resp.body
