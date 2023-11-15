@@ -34,7 +34,7 @@ module Coinbase
       end
 
       def has_more?
-        body.has_key?('pagination') && body['pagination']['next_uri'] != nil
+        body.has_key?('pagination') && !body['pagination']['next_uri'].to_s.empty?
       end
     end
   end
